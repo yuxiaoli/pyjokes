@@ -1,5 +1,5 @@
 import random
-from typing import Literal, get_args
+from typing import Any, Generator, Literal, get_args
 
 from .jokes_cs import jokes_cs
 from .jokes_de import jokes_de
@@ -64,3 +64,11 @@ def get_joke(language: LANGUAGES = "en", category: CATEGORIES = "neutral") -> st
     """
     jokes = get_jokes(language, category)
     return random.choice(jokes)
+
+
+def forever(language: LANGUAGES = "en", category: CATEGORIES = "neutral") -> Generator[str, Any, Any]:
+    """
+    Generate jokes forever
+    """
+    while True:
+        yield get_joke(language, category)
